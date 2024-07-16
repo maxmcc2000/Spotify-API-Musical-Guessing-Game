@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent implements OnInit {
 
+  currentUrl: string = '';
+
   navigate(url: string) {
     this.router.navigateByUrl(url);
   }
@@ -15,6 +17,7 @@ export class HeaderComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
+    this.currentUrl = this.router.url;
   }
 
 }
