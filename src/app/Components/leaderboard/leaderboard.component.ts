@@ -17,6 +17,7 @@ export class LeaderboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.loadLeaderboard();
   }
 
   sortLeaderboard(): void {

@@ -27,10 +27,14 @@
     color: #0500FF;
     width: 80%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     font-size: 40px;
     font-weight: 750;
+}
+
+.leaderboard-results {
+    flex-direction: column;
 }
 
 .leaderboard-columns {

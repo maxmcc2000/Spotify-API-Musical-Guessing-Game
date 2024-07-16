@@ -3,9 +3,13 @@
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 100%;
+    width: 80%;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    color: #0500FF;
+    font-size: 40px;
+    font-weight: 750;
+    margin: 0 auto;
 }
 
 .result div {
