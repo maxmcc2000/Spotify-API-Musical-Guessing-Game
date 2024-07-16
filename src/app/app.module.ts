@@ -10,6 +10,7 @@ import { SettingsComponent } from './Components/settings/settings.component';
 import { LeaderboardComponent } from './Components/leaderboard/leaderboard.component';
 import { GameComponent } from './Components/game/game.component';
 import { ResultsComponent } from './Components/results/results.component';
+import { ResultComponent } from './Components/result/result.component';
 
 const routes: Routes = [
     {path: "", component: HomeComponent},
@@ -20,7 +21,7 @@ const routes: Routes = [
  ];
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeaderComponent, SettingsComponent, LeaderboardComponent, GameComponent, ResultsComponent],
+  declarations: [AppComponent, HomeComponent, HeaderComponent, SettingsComponent, LeaderboardComponent, GameComponent, ResultsComponent, ResultComponent],
   imports: [BrowserModule, FormsModule, RouterModule.forRoot(routes)],
   providers: [],
   bootstrap: [AppComponent],

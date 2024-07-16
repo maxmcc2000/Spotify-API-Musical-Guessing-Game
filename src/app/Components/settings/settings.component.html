@@ -1,22 +1,20 @@
 <app-header></app-header>
 <div class="settings-container">
-    <div>Settings</div>
-    <div>
+    <div class="settings-title">Settings</div>
+    <div class="settings-label">
         Genre
-        <select>
-            <option>Select Genre</option>
+        <select class="settings-select">
+            <option disabled class="settings-option">Select Genre</option>
         </select>
     </div>
-    <div>
+    <div class="settings-label">
         Difficulty
-        <select>
-            <option>Select Difficulty</option>
+        <select class="settings-select">
+            <option disabled class="settings-option">Select Difficulty</option>
         </select>
     </div>
-    <div>
-        Rounds
-        <select>
-            <option>Select Rounds</option>
-        </select>
+    <div class="settings-label">
+        <label>Rounds</label>
+        <input class="increment-input" type="number" min="0" max="10"/>
     </div>
 </div>

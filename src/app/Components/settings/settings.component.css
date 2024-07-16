@@ -1,0 +1,39 @@
+.settings-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    font-family: sans-serif;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.settings-title {
+    font-size: 64px;
+    font-weight: 650;
+    margin-bottom: 20px;
+    margin-top: 40px;
+    color: white;
+}
+
+.settings-label {
+    display: flex;
+    width: 60%;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 40px;
+    color: #0500ff;
+}
+
+.settings-select {
+    height: 40px;
+    width: 150px;
+    text-align: center;
+}
+
+.increment-input {
+    height: 32px;
+    width: auto;
+    text-align: center;
+}
