@@ -1,0 +1,39 @@
+<div class="settings-container">
+  <h1>Game Settings</h1>
+
+  <form (ngSubmit)="saveSettings()">
+    <div class="form-group">
+      <label for="genre">Genre</label>
+      <select id="genre" [(ngModel)]="config.genre" name="genre" required>
+        <option *ngFor="let genre of genres" [value]="genre">
+          {{ genre }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="difficulty">Difficulty</label>
+      <select
+        id="difficulty"
+        [(ngModel)]="config.difficulty"
+        name="difficulty"
+        required
+      >
+        <option *ngFor="let difficulty of difficulties" [value]="difficulty">
+          {{ difficulty }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="rounds">Number of Rounds</label>
+      <select id="rounds" [(ngModel)]="config.rounds" name="rounds" required>
+        <option *ngFor="let round of rounds" [value]="round">
+          {{ round }}
+        </option>
+      </select>
+    </div>
+
+    <button type="submit">Save Settings</button>
+  </form>
+</div>
