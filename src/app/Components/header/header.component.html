@@ -1,3 +1,11 @@
 <div class="header-container">
-    <div>Name That Tune</div>
+    <div class="home-link" (click)="navigate('')">
+        <img class="home-icon" src="../../../assets/home.svg"/>
+        Home
+    </div>
+    <div class="header-title">Name That Tune</div>
+    <div class="leaderboard-link" (click)="navigate('leaderboard')">
+        Leaderboard
+        <img class="leaderboard-icon" src="../../../assets/crown.svg"/>
+    </div>
 </div>
