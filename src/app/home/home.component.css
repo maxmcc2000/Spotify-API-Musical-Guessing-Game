@@ -1,0 +1,64 @@
+.home-page-container {
+    background-color: #3DE881;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: sans-serif;
+}
+
+.rules-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+    margin-top: 50px;
+    color: white;
+    font-size: 64px;
+    font-weight: 200;
+    text-shadow: 0px 2px 2px black;
+}
+
+.rules-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 4px;
+    font-size: 40px;
+    color: #8FF2FF;
+}
+
+.rules-disclaimer {
+    color: red;
+    font-size: 24px;
+}
+
+.buttons-container {
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.play-button {
+    width: 250px;
+    height: 120px;
+    border-radius: 8px;
+    font-size: 40px;
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.25);
+    color: #33FF00;
+    background-color: #178B9B;
+}
+
+.settings-button {
+    width: 250px;
+    height: 120px;
+    border-radius: 8px;
+    font-size: 40px;
+    box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.25);
+    color: #00C2FF;
+    background-color: #AFFFCA;
+}
