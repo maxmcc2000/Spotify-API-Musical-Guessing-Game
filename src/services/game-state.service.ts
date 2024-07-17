@@ -10,7 +10,6 @@ interface GameConfig {
 interface GameState {
   currentRound: number;
   currentScore: number;
-  currentSong: string | null;
   correctAnswers: number;
 }
 
@@ -19,15 +18,14 @@ interface GameState {
 })
 export class GameStateService {
   private initialConfig: GameConfig = {
-    genre: "",
-    difficulty: "",
-    rounds: 0,
+    genre: "rock",
+    difficulty: "normal",
+    rounds: 5,
   };
 
   private initialState: GameState = {
     currentRound: 0,
     currentScore: 0,
-    currentSong: null,
     correctAnswers: 0,
   };
 
@@ -50,7 +48,11 @@ export class GameStateService {
   }
 
   getGameState() {
-    return this.stateSubject;
+    return this.stateSubject.value;
+  }
+
+  getConfig() {
+    return this.configSubject.value;
   }
 
   getCurrentScore() {
@@ -67,5 +69,9 @@ export class GameStateService {
 
   getDifficulty() {
     return this.configSubject.value.difficulty;
+  }
+
+  resetGameState() {
+    this.stateSubject.next(this.initialState);
   }
 }

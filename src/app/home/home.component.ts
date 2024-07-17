@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import fetchFromSpotify, { request } from "../../services/api";
 import { Router } from "@angular/router";
+import { GameStateService } from "src/services/game-state.service";
 
 const AUTH_ENDPOINT =
   "https://nuod0t2zoe.execute-api.us-east-2.amazonaws.com/FT-Classroom/spotify-auth-token";
@@ -12,7 +13,10 @@ const TOKEN_KEY = "whos-who-access-token";
   styleUrls: ["./home.component.css"],
 })
 export class HomeComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private gameStateService: GameStateService
+  ) {}
 
   genres: String[] = ["House", "Alternative", "J-Rock", "R&B"];
   selectedGenre: String = "";
@@ -59,8 +63,8 @@ export class HomeComponent implements OnInit {
       "alternative",
       "j-pop",
       "k-pop",
-      "emo"
-    ]
+      "emo",
+    ];
     this.configLoading = false;
   };
 

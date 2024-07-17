@@ -27,7 +27,7 @@ export class SettingsComponent implements OnInit {
   config = {
     genre: this.genres[0],
     difficulty: this.difficulties[1],
-    rounds: this.rounds[0],
+    rounds: this.rounds[1],
   };
 
   constructor(private gameStateService: GameStateService) {}
