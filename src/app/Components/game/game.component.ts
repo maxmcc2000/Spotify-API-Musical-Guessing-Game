@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Subscription } from 'rxjs';
-import { GameStateService } from 'src/services/game-state.service';
-import { Buffer }  from "buffer";
+import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
+import { Subscription } from "rxjs";
+import { GameStateService } from "src/services/game-state.service";
+import { Buffer } from "buffer";
 import { Howl, Howler } from "howler";
-import fetchFromSpotify from 'src/services/api';
+import fetchFromSpotify from "src/services/api";
 
 interface GameConfig {
   genre: string;
@@ -19,9 +19,17 @@ interface SongInfo {
   preview_url: string;
 }
 
-const clientId = '94cebb94925e4acf87b17551e9280009';
-const clientSecret = '31a321fb362f463e8ed18d2b9099e2ac';
-const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+interface GameState {
+  currentRound: number;
+  currentScore: number;
+  correctAnswers: number;
+}
+
+const clientId = "94cebb94925e4acf87b17551e9280009";
+const clientSecret = "31a321fb362f463e8ed18d2b9099e2ac";
+const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString(
+  "base64"
+);
 
 @Component({
   selector: "app-game",
@@ -29,15 +37,19 @@ const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString('base64'
   styleUrls: ["./game.component.css"],
 })
 export class GameComponent implements OnInit {
-
   private configSubscription: Subscription | undefined;
+  gameState: GameState = {
+    currentRound: 1,
+    currentScore: 0,
+    correctAnswers: 0,
+  };
 
   rounds: number = 0;
   currentRound: number = 0;
-  genre: string = '';
+  genre: string = "";
   numberOfOptions: number = 0;
 
-  token: string = '';
+  token: string = "";
 
   songPreviews: [] = [];
   howls: Howl[] = [];
@@ -48,42 +60,44 @@ export class GameComponent implements OnInit {
   choiceOptions: string[] = [];
   randomChoices: string[] = [];
 
-
-  constructor(private router: Router, private gameService: GameStateService) { }
+  constructor(private router: Router, private gameService: GameStateService) {}
 
   ngOnInit(): void {
-    this.configSubscription = this.gameService.config$.subscribe((config: GameConfig) => {
-      this.rounds = config.rounds;
-      this.genre = config.genre;
-      switch (config.difficulty) {
-        case 'easy':
-          this.numberOfOptions = 2;
-          break;
-        case 'normal':
-          this.numberOfOptions = 4;
-          break;
-        case 'hard':
-          this.numberOfOptions = 0;
-          break;
-        default:
-          break;
+    this.configSubscription = this.gameService.config$.subscribe(
+      (config: GameConfig) => {
+        this.rounds = config.rounds;
+        this.genre = config.genre;
+        switch (config.difficulty) {
+          case "easy":
+            this.numberOfOptions = 2;
+            break;
+          case "normal":
+            this.numberOfOptions = 4;
+            break;
+          case "hard":
+            this.numberOfOptions = 0;
+            break;
+          default:
+            break;
+        }
       }
-    });
+    );
     this.getAccessToken();
+    this.gameService.updateGameState(this.gameState);
   }
 
   getAccessToken = async () => {
-    const response = await fetch('https://accounts.spotify.com/api/token', {
-      method: 'POST',
+    const response = await fetch("https://accounts.spotify.com/api/token", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Authorization': `Basic ${credentials}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Basic ${credentials}`,
       },
-      body: 'grant_type=client_credentials',
+      body: "grant_type=client_credentials",
     });
 
     const data = await response.json();
-    this.token =  data.access_token;
+    this.token = data.access_token;
     this.pullRandomSong();
   };
 
@@ -94,13 +108,13 @@ export class GameComponent implements OnInit {
       do {
         randomIndex = Math.floor(Math.random() * this.randomChoices.length);
       } while (this.choiceOptions.includes(this.randomChoices[randomIndex]));
-  
+
       this.choiceOptions[i] = this.randomChoices[randomIndex];
     }
     this.choiceOptions.push(this.gameSongs[this.currentRound].name);
 
     this.shuffleChoices(this.choiceOptions);
-  
+
     console.log(this.choiceOptions);
   }
 
@@ -116,59 +130,69 @@ export class GameComponent implements OnInit {
     const params = {
       seed_genres: this.genre,
       limit: 100,
-      market: 'US'
-    }
-    const endpoint = 'recommendations';
+      market: "US",
+    };
+    const endpoint = "recommendations";
 
-    const response = await fetchFromSpotify({token: this.token, endpoint, params});
+    const response = await fetchFromSpotify({
+      token: this.token,
+      endpoint,
+      params,
+    });
 
     if (response && response.tracks && response.tracks.length > 0) {
       this.songPreviews = response.tracks.filter((song: SongInfo) => {
-        return song.preview_url !== null && song.explicit === false
+        return song.preview_url !== null && song.explicit === false;
       });
     }
-    this.songPreviews.forEach((song) => this.randomChoices.push(song['name']));
+    this.songPreviews.forEach((song) => this.randomChoices.push(song["name"]));
     for (let i = 0; i < this.rounds; i++) {
-      let randomIndex = Math.floor((Math.random() * this.songPreviews.length) + 1);
+      let randomIndex = Math.floor(
+        Math.random() * this.songPreviews.length + 1
+      );
       this.gameSongs[i] = this.songPreviews[randomIndex];
     }
     this.initializeHowls();
   }
 
   initializeHowls(): void {
-    this.gameSongs.forEach(song => {
+    this.gameSongs.forEach((song) => {
       const howl = new Howl({
-        src: [song['preview_url']],
-        html5: true
+        src: [song["preview_url"]],
+        html5: true,
       });
       this.howls.push(howl);
     });
-    console.log('howls initialized');
+    console.log("howls initialized");
     this.populateChoices();
   }
 
   playSong() {
-      this.howls[this.currentRound].play();
-      console.log('should be playing');
+    this.howls[this.currentRound].play();
+    console.log("should be playing");
   }
 
   checkAnswer(guessedSong: string) {
     this.howls[this.currentRound].fade(1, 0, 200);
     if (this.gameSongs[this.currentRound].name === guessedSong) {
       console.log("Correct!");
+      this.gameState.currentScore += 1000;
+      this.gameState.correctAnswers += 1;
     } else {
       console.log("Not Quite.");
     }
-    this.currentRound = this.currentRound+=1;
+    this.currentRound = this.currentRound += 1;
+    this.gameState.currentRound += 1;
     if (this.currentRound >= this.rounds) {
       this.completeGame();
       return;
     }
+    this.gameService.updateGameState(this.gameState);
+    console.log(this.gameService.getGameState());
     this.populateChoices();
   }
 
   completeGame() {
-    this.router.navigateByUrl('results');
+    this.router.navigateByUrl("results");
   }
-
 }
