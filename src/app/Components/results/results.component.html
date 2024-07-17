@@ -1,8 +1,10 @@
 <app-header></app-header>
 <div class="results-container">
   <div class="results-details">
-    <div class="correct-count">{{ correctAnswers }} / {{ totalQuestions }}</div>
-    <div class="points" #score>{{ finalScore }}</div>
+    <div class="correct-count">
+      Final Score: {{ correctAnswers }} / {{ totalQuestions }}
+    </div>
+    <div class="points" #score>{{ points }} Points</div>
     <div class="results-text">You Got Them All!!!</div>
   </div>
   <div class="submit-name-container">
