@@ -11,6 +11,7 @@ interface GameState {
   currentRound: number;
   currentScore: number;
   currentSong: string | null;
+  correctAnswers: number;
 }
 
 @Injectable({
@@ -27,6 +28,7 @@ export class GameStateService {
     currentRound: 0,
     currentScore: 0,
     currentSong: null,
+    correctAnswers: 0,
   };
 
   private configSubject = new BehaviorSubject<GameConfig>(this.initialConfig);
@@ -45,5 +47,21 @@ export class GameStateService {
   //Method to update the player's score, round, and current song
   updateGameState(newState: GameState) {
     this.stateSubject.next(newState);
+  }
+
+  getGameState() {
+    return this.stateSubject;
+  }
+
+  getCurrentScore() {
+    return this.stateSubject.value.currentScore;
+  }
+
+  getNumberCorrectAnswers() {
+    return this.stateSubject.value.correctAnswers;
+  }
+
+  getTotalQuestions() {
+    return this.configSubject.value.rounds;
   }
 }
