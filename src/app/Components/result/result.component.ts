@@ -1,19 +1,18 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input } from "@angular/core";
 
 @Component({
-  selector: 'app-result',
-  templateUrl: './result.component.html',
-  styleUrls: ['./result.component.css']
+  selector: "app-result",
+  templateUrl: "./result.component.html",
+  styleUrls: ["./result.component.css"],
 })
 export class ResultComponent implements OnInit {
-
-  @Input() index: number = 0;
-  @Input() playerName: string = '';
+  //replaced index with playerRank
+  //@Input() index: number = 0;
+  @Input() playerName: string = "";
   @Input() playerScore: number = 0;
+  @Input() playerRank: number = 0;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }
