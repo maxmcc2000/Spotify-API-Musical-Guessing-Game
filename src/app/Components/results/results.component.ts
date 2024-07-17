@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -10,11 +9,6 @@ interface GameConfig {
   difficulty: string;
   rounds: number;
 }
-=======
-import { Component, OnInit } from "@angular/core";
-import { Router } from "@angular/router";
-import { GameStateService } from "src/services/game-state.service";
->>>>>>> 6ea59544e7ae0ab94c193fcb04475ff28b2037e2
 
 @Component({
   selector: "app-results",
@@ -26,7 +20,6 @@ export class ResultsComponent implements OnInit {
   correctAnswers: number = 0;
   totalQuestions: number = 0;
 
-<<<<<<< HEAD
   score: number = 10000;
   correctCount: number = 10;
   totalCount: number = 10;
@@ -57,23 +50,6 @@ export class ResultsComponent implements OnInit {
 
     leaderboard[this.difficulty].push({ playerName: name, playerScore: score });
     localStorage.setItem('leaderboard', JSON.stringify(leaderboard));
-=======
-  constructor(
-    private router: Router,
-    private gameStateService: GameStateService
-  ) {}
-
-  ngOnInit(): void {
-    this.points = this.gameStateService.getCurrentScore();
-    this.correctAnswers = this.gameStateService.getNumberCorrectAnswers();
-    this.totalQuestions = this.gameStateService.getTotalQuestions();
-  }
-
-  saveScoreToLocalStorage(name: string, points: string): void {
-    let leaderboard = JSON.parse(localStorage.getItem("leaderboard") || "[]");
-    leaderboard.push({ playerName: name, playerScore: points });
-    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
->>>>>>> 6ea59544e7ae0ab94c193fcb04475ff28b2037e2
     this.router.navigateByUrl("");
   }
 }

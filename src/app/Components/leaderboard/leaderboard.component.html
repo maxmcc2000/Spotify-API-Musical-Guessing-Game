@@ -5,7 +5,6 @@
     <img class="crown-icon" src="../../../assets/crown.svg"/>
 </div>
 <div class="leaderboard-container">
-<<<<<<< HEAD
     <div class="leaderboard-tabs">
         <div class="{{selected === 'easy' ? 'selected-tab' : 'leaderboard-tab'}}" (click)="loadLeaderboard('easy')">Easy</div>
         <div class="{{selected === 'normal' ? 'selected-tab' : 'leaderboard-tab'}}" (click)="loadLeaderboard('normal')">Normal</div>
@@ -20,26 +19,7 @@
         <app-result *ngFor="let score of leaderboard; let i = index"
                 [playerName]="score.playerName"
                 [playerScore]="score.playerScore"
-                [index]="i + 1"
+                [playerRank]="i + 1"
             ></app-result>
     </div>
 </div>
-=======
-  <div class="leaderboard-title">
-    <img class="crown-icon" src="../../../assets/crown.svg" />
-    <div>Leaderboard</div>
-    <img class="crown-icon" src="../../../assets/crown.svg" />
-  </div>
-  <div class="leaderboard-columns">
-    <div>Rank</div>
-    <div>Score</div>
-    <div>Name</div>
-  </div>
-</div>
-<app-result
-  *ngFor="let score of leaderboard; let i = index"
-  [playerName]="score.playerName"
-  [playerScore]="score.playerScore"
-  [playerRank]="score.playerRank"
-></app-result>
->>>>>>> 6ea59544e7ae0ab94c193fcb04475ff28b2037e2

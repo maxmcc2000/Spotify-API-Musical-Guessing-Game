@@ -1,6 +1,5 @@
 <app-header></app-header>
 <div class="results-container">
-<<<<<<< HEAD
     <div class="results-details">
         <div class="correct-count">{{correctCount + '/' + totalCount}}</div>
         <div class="points">+{{score}}</div>
@@ -12,23 +11,3 @@
     </div>
     <button class="submit-button" (click)="saveScoreToLocalStorage(nameInput.value, score)">Submit Score</button>
 </div>
-=======
-  <div class="results-details">
-    <div class="correct-count">
-      Final Score: {{ correctAnswers }} / {{ totalQuestions }}
-    </div>
-    <div class="points" #score>{{ points }} Points</div>
-    <div class="results-text">You Got Them All!!!</div>
-  </div>
-  <div class="submit-name-container">
-    <div class="submit-label"></div>
-    <input class="name-input" #nameInput placeholder="Your Name Here..." />
-  </div>
-  <button
-    class="submit-button"
-    (click)="saveScoreToLocalStorage(nameInput.value, score.innerText)"
-  >
-    Submit Score
-  </button>
-</div>
->>>>>>> 6ea59544e7ae0ab94c193fcb04475ff28b2037e2
