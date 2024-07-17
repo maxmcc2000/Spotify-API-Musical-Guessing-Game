@@ -21,7 +21,7 @@ export class SettingsComponent implements OnInit {
     "k-pop",
     "emo",
   ];
-  difficulties: string[] = ["Easy", "Medium", "Hard"];
+  difficulties: string[] = ["easy", "normal", "hard"];
   rounds: number[] = [1, 5, 10, 15, 20];
 
   config = {

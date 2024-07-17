@@ -19,9 +19,9 @@ interface GameState {
 })
 export class GameStateService {
   private initialConfig: GameConfig = {
-    genre: "pop",
-    difficulty: "normal",
-    rounds: 5,
+    genre: "",
+    difficulty: "",
+    rounds: 0,
   };
 
   private initialState: GameState = {
@@ -63,5 +63,9 @@ export class GameStateService {
 
   getTotalQuestions() {
     return this.configSubject.value.rounds;
+  }
+
+  getDifficulty() {
+    return this.configSubject.value.difficulty;
   }
 }
