@@ -8,7 +8,7 @@ import { GameStateService } from "src/services/game-state.service";
   styleUrls: ["./results.component.css"],
 })
 export class ResultsComponent implements OnInit {
-  finalScore: number = 0;
+  points: number = 0;
   correctAnswers: number = 0;
   totalQuestions: number = 0;
 
@@ -18,14 +18,14 @@ export class ResultsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.finalScore = this.gameStateService.getCurrentScore();
+    this.points = this.gameStateService.getCurrentScore();
     this.correctAnswers = this.gameStateService.getNumberCorrectAnswers();
     this.totalQuestions = this.gameStateService.getTotalQuestions();
   }
 
-  saveScoreToLocalStorage(name: string, finalScore: string): void {
+  saveScoreToLocalStorage(name: string, points: string): void {
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard") || "[]");
-    leaderboard.push({ playerName: name, playerScore: finalScore });
+    leaderboard.push({ playerName: name, playerScore: points });
     localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
     this.router.navigateByUrl("");
   }
