@@ -4,7 +4,7 @@
   <form (ngSubmit)="saveSettings()">
     <div class="form-group">
       <label for="genre">Genre</label>
-      <select id="genre" [(ngModel)]="config.genre" name="genre" required>
+      <select id="genre" name="genre" required>
         <option *ngFor="let genre of genres" [value]="genre">
           {{ genre }}
         </option>
@@ -13,12 +13,7 @@
 
     <div class="form-group">
       <label for="difficulty">Difficulty</label>
-      <select
-        id="difficulty"
-        [(ngModel)]="config.difficulty"
-        name="difficulty"
-        required
-      >
+      <select id="difficulty" name="difficulty" required>
         <option *ngFor="let difficulty of difficulties" [value]="difficulty">
           {{ difficulty }}
         </option>
@@ -27,7 +22,7 @@
 
     <div class="form-group">
       <label for="rounds">Number of Rounds</label>
-      <select id="rounds" [(ngModel)]="config.rounds" name="rounds" required>
+      <select id="rounds" name="rounds" required>
         <option *ngFor="let round of rounds" [value]="round">
           {{ round }}
         </option>

@@ -64,4 +64,8 @@ export class GameStateService {
   getTotalQuestions() {
     return this.configSubject.value.rounds;
   }
+
+  getDifficulty() {
+    return this.configSubject.value.difficulty;
+  }
 }

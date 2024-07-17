@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { GameStateService } from "src/services/game-state.service";
 
 interface playerInfo {
   playerName: string;
