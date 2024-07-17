@@ -1,0 +1,61 @@
+.results-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  margin-top: 50px;
+  font-family: sans-serif;
+}
+
+.results-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.correct-count {
+  color: #24ff00;
+  font-size: 96px;
+  font-family: sans-serif;
+  font-weight: 800;
+  text-shadow: 0px 6px 4px rgba(0, 0, 0, 0.684);
+}
+
+.points {
+  font-size: 48px;
+  color: #4770ff;
+  font-weight: 500;
+  text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.226);
+}
+
+.results-text {
+  color: #0500ff;
+  font-size: 40px;
+  text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.226);
+}
+
+.name-input {
+  border-radius: 15px;
+  width: 564px;
+  height: 85px;
+  font-size: 30px;
+  border: white;
+  text-align: center;
+}
+
+.submit-button {
+  color: #73f7ff;
+  padding: 10px;
+  border: #168acb;
+  background-color: #168acb;
+  border-radius: 25px;
+  width: 250px;
+  height: 90px;
+  border-radius: 8px;
+  font-size: 30px;
+  box-shadow: 0px 6px 4px rgba(0, 0, 0, 0.25);
+  font-weight: 600;
+}
