@@ -4,14 +4,11 @@
         <img />
         <div>
             <p></p>
-            <button (click)="playSong(currentRound)">Play</button>
+            <button (click)="playSong()">Play</button>
           </div>
         <img />
     </div>
     <div class="choices-container">
-        <button>Option 1</button>
-        <button>Option 2</button>
-        <button>Option 3</button>
-        <button>Option 4</button>
+        <button *ngFor="let song of choiceOptions" (click)="checkAnswer(song)">{{song}}</button>
     </div>
 </div>
