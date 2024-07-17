@@ -31,6 +31,8 @@ export class ResultsComponent implements OnInit {
         this.difficulty = config.difficulty;
       }
     );
+
+    //gameService will store the resulting score and number of correct answers until a new game is started
     this.score = this.gameService.getGameState().currentScore;
     this.correctCount = this.gameService.getGameState().correctAnswers;
     this.totalCount = this.gameService.getTotalQuestions();
