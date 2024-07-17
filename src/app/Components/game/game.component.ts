@@ -17,9 +17,9 @@ const clientSecret = 'a5757766312243e5b5a714ba98333fa3';
 const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
 
 @Component({
-  selector: 'app-game',
-  templateUrl: './game.component.html',
-  styleUrls: ['./game.component.css']
+  selector: "app-game",
+  templateUrl: "./game.component.html",
+  styleUrls: ["./game.component.css"],
 })
 export class GameComponent implements OnInit {
 

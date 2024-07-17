@@ -1,20 +1,40 @@
 <app-header></app-header>
 <div class="settings-container">
-    <div class="settings-title">Settings</div>
-    <div class="settings-label">
-        Genre
-        <select class="settings-select">
-            <option disabled class="settings-option">Select Genre</option>
-        </select>
+  <h1 class="settings-title">Settings</h1>
+
+  <form (ngSubmit)="saveSettings()">
+    <div class="form-group">
+      <label for="genre" class="label">Genre</label>
+      <select id="genre" [(ngModel)]="config.genre" name="genre" required>
+        <option *ngFor="let genre of genres" [value]="genre">
+          {{ genre }}
+        </option>
+      </select>
     </div>
-    <div class="settings-label">
-        Difficulty
-        <select class="settings-select">
-            <option disabled class="settings-option">Select Difficulty</option>
-        </select>
+
+    <div class="form-group">
+      <label for="difficulty" class="label">Difficulty</label>
+      <select
+        id="difficulty"
+        [(ngModel)]="config.difficulty"
+        name="difficulty"
+        required
+      >
+        <option *ngFor="let difficulty of difficulties" [value]="difficulty">
+          {{ difficulty }}
+        </option>
+      </select>
     </div>
-    <div class="settings-label">
-        <label>Rounds</label>
-        <input class="increment-input" type="number" min="0" max="10"/>
+
+    <div class="form-group">
+      <label for="rounds" class="label">Number of Rounds</label>
+      <select id="rounds" [(ngModel)]="config.rounds" name="rounds" required>
+        <option *ngFor="let round of rounds" [value]="round">
+          {{ round }}
+        </option>
+      </select>
     </div>
+
+    <button type="submit">Save Settings</button>
+  </form>
 </div>
