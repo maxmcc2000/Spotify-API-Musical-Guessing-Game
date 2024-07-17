@@ -7,9 +7,10 @@ interface GameConfig {
   rounds: number;
 }
 
-interface LeaderboardEntry {
-  name: string;
-  score: number;
+interface GameState {
+  currentRound: number;
+  currentScore: number;
+  currentSong: string | null;
 }
 
 @Injectable({
@@ -22,11 +23,17 @@ export class GameStateService {
     rounds: 5,
   };
 
+  private initialState: GameState = {
+    currentRound: 0,
+    currentScore: 0,
+    currentSong: null,
+  };
+
   private configSubject = new BehaviorSubject<GameConfig>(this.initialConfig);
-  private leaderboardSubject = new BehaviorSubject<LeaderboardEntry[]>([]);
+  private stateSubject = new BehaviorSubject<GameState>(this.initialState);
 
   config$ = this.configSubject.asObservable();
-  leaderboard$ = this.leaderboardSubject.asObservable();
+  state$ = this.stateSubject.asObservable();
 
   constructor() {}
 
@@ -35,14 +42,8 @@ export class GameStateService {
     console.log(newConfig);
   }
 
-  /*---Leaderboard methods---*/
-  addLeaderboardEntry(newEntry: LeaderboardEntry) {
-    const currentLeaderboard = this.leaderboardSubject.getValue();
-    this.leaderboardSubject.next([...currentLeaderboard, newEntry]);
+  //Method to update the player's score, round, and current song
+  updateGameState(newState: GameState) {
+    this.stateSubject.next(newState);
   }
-
-  getLeaderboard(): LeaderboardEntry[] {
-    return this.leaderboardSubject.getValue();
-  }
-  /*--------------------------*/
 }
