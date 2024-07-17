@@ -1,16 +1,3 @@
-.leaderboard-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    font-family: sans-serif;
-}
-
-.crown-icon {
-    width: 100px;
-    height: 100px;
-}
-
 .leaderboard-title {
     display: flex;
     gap: 20px;
@@ -23,26 +10,78 @@
     text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-.leaderboard-columns, .leaderboard-results {
-    color: #0500FF;
-    width: 80%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 40px;
-    font-weight: 750;
+.crown-icon {
+    width: 100px;
+    height: 100px;
 }
 
-.leaderboard-results {
+.leaderboard-container {
+    display: flex;
     flex-direction: column;
+    height: 600px;
+    font-family: sans-serif;
+    background-color: rgb(80, 201, 134);
+    margin: 0 auto;
+    width: 80%;
+    color: #0500FF;
+    font-size: 40px;
+    font-weight: 750;
+    border-radius: 20px;
+    padding: 15px;
+}
+
+.leaderboard-tabs {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background-color: #0500FF;
+    gap: 5px;
+    padding: 5px;
+    border-radius: 15px;
+}
+
+.leaderboard-tab {
+    cursor: pointer;
+    padding: 10px 20px;
+    background-color: #8ed0eb;
+    width: 100%;
+    text-align: center;
+}
+
+.leaderboard-tabs div:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.leaderboard-tabs div:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.leaderboard-tab:hover {
+    background-color: #1bc4e2;
+}
+
+.selected-tab {
+    cursor: pointer;
+    padding: 10px 20px;
+    width: 100%;
+    text-align: center;
+    background-color: #00ffff;
 }
 
 .leaderboard-columns {
-    margin-top: 50px;
-    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
-.leaderboard-columns div {
-    width: 200px;
-    text-align: center;
+.leaderboard-results {
+    display: flex;
+    overflow-y: scroll;
+    flex-direction: column;
+    width: 100%;
 }

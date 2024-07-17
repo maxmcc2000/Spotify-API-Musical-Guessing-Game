@@ -1,17 +1,12 @@
 .result {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    width: 80%;
-    flex-direction: row;
-    justify-content: space-between;
-    color: #0500FF;
-    font-size: 40px;
-    font-weight: 750;
-    margin: 0 auto;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-bottom: 2px solid #ccc;
+    font-size: 30px;
 }
 
 .result div {
-    width: 200px;
+    flex: 1;
+    text-align: center;
 }

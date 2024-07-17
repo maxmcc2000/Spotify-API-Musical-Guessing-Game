@@ -1,13 +1,13 @@
 <app-header></app-header>
 <div class="results-container">
     <div class="results-details">
-        <div class="correct-count">10/10</div>
-        <div class="points" #score>1000</div>
+        <div class="correct-count">{{correctCount + '/' + totalCount}}</div>
+        <div class="points">+{{score}}</div>
         <div class="results-text">You Got Them All!!!</div>
     </div>
     <div class="submit-name-container">
         <div class="submit-label"></div>
         <input class="name-input" #nameInput placeholder="Your Name Here..."/>
     </div>
-    <button class="submit-button" (click)="saveScoreToLocalStorage(nameInput.value, score.innerText)">Submit Score</button>
+    <button class="submit-button" (click)="saveScoreToLocalStorage(nameInput.value, score)">Submit Score</button>
 </div>

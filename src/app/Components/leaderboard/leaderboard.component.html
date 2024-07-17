@@ -1,18 +1,25 @@
 <app-header></app-header>
+<div class="leaderboard-title">
+    <img class="crown-icon" src="../../../assets/crown.svg"/>
+    <div>Leaderboard</div>
+    <img class="crown-icon" src="../../../assets/crown.svg"/>
+</div>
 <div class="leaderboard-container">
-    <div class="leaderboard-title">
-        <img class="crown-icon" src="../../../assets/crown.svg"/>
-        <div>Leaderboard</div>
-        <img class="crown-icon" src="../../../assets/crown.svg"/>
+    <div class="leaderboard-tabs">
+        <div class="{{selected === 'easy' ? 'selected-tab' : 'leaderboard-tab'}}" (click)="loadLeaderboard('easy')">Easy</div>
+        <div class="{{selected === 'normal' ? 'selected-tab' : 'leaderboard-tab'}}" (click)="loadLeaderboard('normal')">Normal</div>
+        <div class="{{selected === 'hard' ? 'selected-tab' : 'leaderboard-tab'}}" (click)="loadLeaderboard('hard')">Hard</div>
     </div>
     <div class="leaderboard-columns">
         <div>Rank</div>
         <div>Score</div>
         <div>Name</div>
     </div>
+    <div class="leaderboard-results">
+        <app-result *ngFor="let score of leaderboard; let i = index"
+                [playerName]="score.playerName"
+                [playerScore]="score.playerScore"
+                [index]="i + 1"
+            ></app-result>
+    </div>
 </div>
-<app-result *ngFor="let score of leaderboard; let i = index"
-            [playerName]="score.playerName"
-            [playerScore]="score.playerScore"
-            [index]="i + 1"
-        ></app-result>

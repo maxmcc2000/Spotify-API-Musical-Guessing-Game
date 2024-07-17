@@ -13,7 +13,7 @@ interface GameConfig {
 export class GameStateService {
   private initialConfig: GameConfig = {
     genre: "Pop",
-    difficulty: "Medium",
+    difficulty: "normal",
     rounds: 5,
   };
 

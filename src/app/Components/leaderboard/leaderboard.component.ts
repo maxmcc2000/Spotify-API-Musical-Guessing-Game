@@ -13,21 +13,23 @@ interface playerInfo {
 export class LeaderboardComponent implements OnInit {
 
   leaderboard: playerInfo[] = [];
+  selected: string = '';
 
   constructor() { }
 
   ngOnInit(): void {
-    this.loadLeaderboard();
+    this.loadLeaderboard('normal');
   }
 
   sortLeaderboard(): void {
     this.leaderboard.sort((a, b) => b.playerScore - a.playerScore);
   }
 
-  loadLeaderboard(): void {
+  loadLeaderboard(difficulty: string): void {
+    this.selected = difficulty;
     const leaderboardData = localStorage.getItem('leaderboard');
     if (leaderboardData) {
-      this.leaderboard = JSON.parse(leaderboardData);
+      this.leaderboard = JSON.parse(leaderboardData)[difficulty];
       this.sortLeaderboard();
     }
   }
