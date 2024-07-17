@@ -1,5 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
 html body {
-    margin: 0;
-    background-color: #3DE881;
+  margin: 0;
+  background-color: #3de881;
+}
+
+:root {
+  /* ------- colors ------- */
+  --primary-color: #3de881;
+  --secondary-color: #a5ffa8;
+  --button-color: #007bff;
+
+  /* ---------------------- */
+
+  /* ------- fonts ------- */
+  --font-family: sans-serif;
 }
