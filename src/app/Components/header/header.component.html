@@ -1,0 +1,11 @@
+<div class="header-container">
+    <div *ngIf="currentUrl !== '/'" class="home-link" (click)="navigate('')">
+        <img class="home-icon" src="../../../assets/home.svg"/>
+        Home
+    </div>
+    <div class="header-title">Name That Tune</div>
+    <div *ngIf="currentUrl !== '/leaderboard'" class="leaderboard-link" (click)="navigate('leaderboard')">
+        Leaderboard
+        <img class="leaderboard-icon" src="../../../assets/crown.svg"/>
+    </div>
+</div>

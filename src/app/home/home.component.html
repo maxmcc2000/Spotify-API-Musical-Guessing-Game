@@ -1,5 +1,5 @@
 <div *ngIf="authLoading || configLoading">Loading...</div>
-<div *ngIf="!authLoading && !configLoading">
+<!-- <div *ngIf="!authLoading && !configLoading">
   Genre:
   <select [(ngModel)]="selectedGenre" (ngModelChange)="setGenre($event)">
     <option [value]=""></option>
@@ -7,6 +7,26 @@
       {{ genre }}
     </option>
   </select>
+</div> -->
+
+<app-header></app-header>
+<div class="home-page-container">
+  <div class="rules-container">
+    <div class="rules-title">How To Play</div>
+    <div class="rules-list">
+      <div>1. Click "Settings"</div>
+      <div>2. Choose your Difficulty</div>
+      <div>3. Choose your Genre</div>
+      <div>4. Choose your Song Amount</div>
+      <div>5. Close "Settings"</div>
+      <div>6. Click "Let's Play!" to begin!</div>
+    </div>
+    <div class="rules-disclaimer">*These settings will persist every game until they are changed again!*</div>
+  </div>
+  <div class="buttons-container">
+    <button class="settings-button" (click)="navigate('settings')">Settings</button>
+    <button class="play-button" (click)="navigate('game')">Let's Play!</button>
+  </div>
 </div>
 <!-- Uncomment below to see the settings component -->
 <!-- <app-settings></app-settings> -->
