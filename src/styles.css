@@ -1,7 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+  height: 100%;
+  margin: 0;
+  background-image: linear-gradient(
+    to bottom right,
+    #3fe682,
+    rgb(255, 255, 81)
+  );
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 html body {
   margin: 0;
-  background-color: #3de881;
 }
 
 :root {
