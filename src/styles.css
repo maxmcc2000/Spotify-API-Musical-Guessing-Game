@@ -4,8 +4,8 @@ html {
   margin: 0;
   background-image: linear-gradient(
     to bottom right,
-    #3fe682,
-    rgb(255, 255, 81)
+    var(--background-color-1),
+    var(--background-color-2)
   );
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -18,10 +18,19 @@ html body {
 
 :root {
   /* ------- colors ------- */
-  --primary-color: #3de881;
-  --secondary-color: #a5ffa8;
-  --button-color: #007bff;
-  --cyan: #007bff;
+  --background-color-1: #ff6f69;
+  --background-color-2: #ffcc5c;
+  --header-color: #88d8b0;
+  --text-color-1: #ffeead;
+  --text-color-2: #96ceb4;
+  --text-color-3: #26547c;
+  /* --shadow-color: #353839; */
+  --shadow-color: #00000040;
+  --button-color-1: #96ceb4;
+  --button-color-2: #ffeead;
+  --button-color-3: #ff6f69;
+  /* --pts-color shows up on results.component.css */
+  --pts-color: #24ff00;
 
   /* ---------------------- */
 
