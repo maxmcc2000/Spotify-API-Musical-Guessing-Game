@@ -107,7 +107,9 @@ export class GameComponent implements OnInit {
     if (this.audioSubscription) {
       this.audioSubscription.unsubscribe();
     }
-    this.pauseSong(); // Ensure audio stops when component is destroyed
+    if (this) {
+      //this.pauseSong(); // Ensure audio stops when component is destroyed
+    }
   }
 
   getAccessToken = async () => {
