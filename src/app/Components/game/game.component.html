@@ -2,22 +2,26 @@
 <div class="game-container">
   <div class="play-replay-container">
     <div class="round-text">Round {{ gameState.currentRound }}</div>
-    <img 
-        (click)="togglePlayPause()" 
-        class="play-button" 
-        [src]="getPlayPauseIcon()"
+    <img
+      (click)="togglePlayPause()"
+      class="play-button"
+      [src]="getPlayPauseIcon()"
     />
   </div>
-    <div class="choices-container" *ngIf="numberOfOptions > 0">
-        <button *ngFor="let song of choiceOptions" (click)="checkAnswer(song)" class="choice">
-            {{ song }}
-        </button>
-    </div>
-    <div *ngIf="numberOfOptions === 0" class="choices-container">
-        <input 
-            #answerInput 
-            (keydown.enter)="checkAnswer(answerInput.value); answerInput.value=''"
-            class="answer-input"
-        />
-    </div>
+  <div class="choices-container" *ngIf="numberOfOptions > 0">
+    <button
+      *ngFor="let song of choiceOptions"
+      (click)="checkAnswer(song)"
+      class="choice"
+    >
+      {{ song }}
+    </button>
+  </div>
+  <div *ngIf="numberOfOptions === 0" class="choices-container">
+    <input
+      #answerInput
+      (keydown.enter)="checkAnswer(answerInput.value); answerInput.value = ''"
+      class="answer-input"
+    />
+  </div>
 </div>

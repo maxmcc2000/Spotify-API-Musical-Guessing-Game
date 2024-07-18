@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
+import { Subject } from "rxjs";
 
 interface GameConfig {
   genre: string;
@@ -31,9 +32,11 @@ export class GameStateService {
 
   private configSubject = new BehaviorSubject<GameConfig>(this.initialConfig);
   private stateSubject = new BehaviorSubject<GameState>(this.initialState);
+  private stopAudioSource = new Subject<void>();
 
   config$ = this.configSubject.asObservable();
   state$ = this.stateSubject.asObservable();
+  stopAudio$ = this.stopAudioSource.asObservable();
 
   constructor() {}
 
@@ -45,6 +48,10 @@ export class GameStateService {
   //Method to update the player's score, round, and current song
   updateGameState(newState: GameState) {
     this.stateSubject.next(newState);
+  }
+
+  triggerStopAudio() {
+    this.stopAudioSource.next();
   }
 
   getGameState() {
