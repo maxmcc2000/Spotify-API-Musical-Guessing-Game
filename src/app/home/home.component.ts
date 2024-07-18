@@ -55,15 +55,13 @@ export class HomeComponent implements OnInit {
 
     this.genres = [
       "rock",
-      "rap",
       "pop",
       "country",
       "hip-hop",
       "jazz",
-      "alternative",
-      "j-pop",
-      "k-pop",
       "emo",
+      "holidays",
+      "movies",
     ];
     this.configLoading = false;
   };

@@ -11,15 +11,13 @@ import { Router } from "@angular/router";
 export class SettingsComponent implements OnInit {
   genres: string[] = [
     "rock",
-    "rap",
     "pop",
     "country",
     "hip-hop",
     "jazz",
-    "alternative",
-    "j-pop",
-    "k-pop",
     "emo",
+    "holidays",
+    "movies",
   ];
   difficulties: string[] = ["easy", "normal", "hard"];
   rounds: number[] = [1, 5, 10, 15, 20];
@@ -30,7 +28,10 @@ export class SettingsComponent implements OnInit {
     rounds: this.rounds[1],
   };
 
-  constructor(private gameStateService: GameStateService, private router: Router) {}
+  constructor(
+    private gameStateService: GameStateService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.gameStateService.config$.subscribe((config) => {

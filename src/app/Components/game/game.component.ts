@@ -28,7 +28,7 @@ interface GameState {
 enum PlaybackState {
   Paused,
   Playing,
-  Finished
+  Finished,
 }
 
 const clientId = "7e9cf50af43c43f2bb33a2f1eefe04f9";
@@ -43,9 +43,9 @@ const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString(
   styleUrls: ["./game.component.css"],
 })
 export class GameComponent implements OnInit {
-  
   private configSubscription: Subscription | undefined;
   private playbackState: PlaybackState | undefined;
+  private audioSubscription: Subscription = new Subscription();
 
   gameState: GameState = {
     currentRound: 1,
@@ -66,7 +66,7 @@ export class GameComponent implements OnInit {
   loading: boolean = true;
 
   gameSongs: SongInfo[] = [];
-  choiceOptions: string[] = ['choice 1', 'choice 2', 'choice 3', 'choice 4'];
+  choiceOptions: string[] = ["choice 1", "choice 2", "choice 3", "choice 4"];
   randomChoices: string[] = [];
 
   constructor(private router: Router, private gameService: GameStateService) {}
@@ -93,6 +93,21 @@ export class GameComponent implements OnInit {
     );
     this.getAccessToken();
     this.gameService.updateGameState(this.gameState);
+
+    // Stops playing song when a button on the header is clicked (Home or Leaderboard)
+    this.audioSubscription = this.gameService.stopAudio$.subscribe(() => {
+      this.pauseSong();
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.configSubscription) {
+      this.configSubscription.unsubscribe();
+    }
+    if (this.audioSubscription) {
+      this.audioSubscription.unsubscribe();
+    }
+    this.pauseSong(); // Ensure audio stops when component is destroyed
   }
 
   getAccessToken = async () => {
@@ -170,7 +185,7 @@ export class GameComponent implements OnInit {
       const howl = new Howl({
         src: [song["preview_url"]],
         html5: true,
-        onend: () => this.onSongEnd()
+        onend: () => this.onSongEnd(),
       });
       this.howls.push(howl);
     });
@@ -200,13 +215,13 @@ export class GameComponent implements OnInit {
   getPlayPauseIcon(): string {
     switch (this.playbackState) {
       case PlaybackState.Playing:
-        return '../../../assets/pauseButton.svg';
+        return "../../../assets/pauseButton.svg";
       case PlaybackState.Paused:
-        return '../../../assets/playButton.svg';
+        return "../../../assets/playButton.svg";
       case PlaybackState.Finished:
-        return '../../../assets/replayButton.svg';
+        return "../../../assets/replayButton.svg";
       default:
-        return '../../../assets/playButton.svg';
+        return "../../../assets/playButton.svg";
     }
   }
 
@@ -221,7 +236,10 @@ export class GameComponent implements OnInit {
   checkAnswer(guessedSong: string) {
     this.playbackState = PlaybackState.Paused;
     this.howls[this.currentRound].unload();
-    if (this.gameSongs[this.currentRound].name.toLowerCase().replace(/'/g, '') === guessedSong.toLowerCase().replace(/'/g, '')) {
+    if (
+      this.gameSongs[this.currentRound].name.toLowerCase().replace(/'/g, "") ===
+      guessedSong.toLowerCase().replace(/'/g, "")
+    ) {
       console.log("Correct!");
       this.gameState.currentScore += 1000;
       this.gameState.correctAnswers += 1;
