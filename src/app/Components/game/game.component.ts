@@ -253,7 +253,6 @@ export class GameComponent implements OnInit {
     this.gameState.currentRound += 1;
     if (this.currentRound >= this.rounds) {
       this.completeGame();
-      //this.ngOnDestroy();
       return;
     }
     this.gameService.updateGameState(this.gameState);
