@@ -25,8 +25,14 @@ interface GameState {
   correctAnswers: number;
 }
 
-const clientId = "94cebb94925e4acf87b17551e9280009";
-const clientSecret = "31a321fb362f463e8ed18d2b9099e2ac";
+enum PlaybackState {
+  Paused,
+  Playing,
+  Finished
+}
+
+const clientId = "5ed7e77c36ab4ad3881c3861b63b91a9";
+const clientSecret = "a5757766312243e5b5a714ba98333fa3";
 const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString(
   "base64"
 );
@@ -37,7 +43,10 @@ const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString(
   styleUrls: ["./game.component.css"],
 })
 export class GameComponent implements OnInit {
+  
   private configSubscription: Subscription | undefined;
+  private playbackState: PlaybackState | undefined;
+
   gameState: GameState = {
     currentRound: 1,
     currentScore: 0,
@@ -57,7 +66,7 @@ export class GameComponent implements OnInit {
   loading: boolean = true;
 
   gameSongs: SongInfo[] = [];
-  choiceOptions: string[] = [];
+  choiceOptions: string[] = ['choice 1', 'choice 2', 'choice 3', 'choice 4'];
   randomChoices: string[] = [];
 
   constructor(private router: Router, private gameService: GameStateService) {}
@@ -142,6 +151,7 @@ export class GameComponent implements OnInit {
 
     if (response && response.tracks && response.tracks.length > 0) {
       this.songPreviews = response.tracks.filter((song: SongInfo) => {
+        song.name = this.cleanSongName(song.name);
         return song.preview_url !== null && song.explicit === false;
       });
     }
@@ -160,6 +170,7 @@ export class GameComponent implements OnInit {
       const howl = new Howl({
         src: [song["preview_url"]],
         html5: true,
+        onend: () => this.onSongEnd()
       });
       this.howls.push(howl);
     });
@@ -167,14 +178,50 @@ export class GameComponent implements OnInit {
     this.populateChoices();
   }
 
+  cleanSongName(songName: string): string {
+    return songName.split(/[/[\/\-\(\?]/)[0].trim();
+  }
+
   playSong() {
     this.howls[this.currentRound].play();
+    this.playbackState = PlaybackState.Playing;
     console.log("should be playing");
   }
 
+  pauseSong() {
+    this.howls[this.currentRound].pause();
+    this.playbackState = PlaybackState.Paused;
+  }
+
+  onSongEnd() {
+    this.playbackState = PlaybackState.Finished;
+  }
+
+  getPlayPauseIcon(): string {
+    switch (this.playbackState) {
+      case PlaybackState.Playing:
+        return '../../../assets/pauseButton.svg';
+      case PlaybackState.Paused:
+        return '../../../assets/playButton.svg';
+      case PlaybackState.Finished:
+        return '../../../assets/replayButton.svg';
+      default:
+        return '../../../assets/playButton.svg';
+    }
+  }
+
+  togglePlayPause(): void {
+    if (this.playbackState === PlaybackState.Playing) {
+      this.pauseSong();
+    } else {
+      this.playSong();
+    }
+  }
+
   checkAnswer(guessedSong: string) {
-    this.howls[this.currentRound].fade(1, 0, 200);
-    if (this.gameSongs[this.currentRound].name === guessedSong) {
+    this.playbackState = PlaybackState.Paused;
+    this.howls[this.currentRound].unload();
+    if (this.gameSongs[this.currentRound].name.toLowerCase().replace(/'/g, '') === guessedSong.toLowerCase().replace(/'/g, '')) {
       console.log("Correct!");
       this.gameState.currentScore += 1000;
       this.gameState.correctAnswers += 1;

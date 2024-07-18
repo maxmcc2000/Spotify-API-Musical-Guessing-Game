@@ -1,0 +1,73 @@
+.game-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    gap: 50px;
+}
+
+.play-replay-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+
+.round-text {
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    text-wrap: wrap;
+    font-family: sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    color: rgb(164, 252, 255);
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.play-button {
+    height: 150px;
+    width: 150px;
+}
+
+.play-button:hover {
+    cursor: pointer;
+    scale: 1.05;
+}
+
+.choices-container {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+.choice {
+    width: 220px;
+    height: 100px;
+    border-radius: 15px;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    background-color: rgb(63, 163, 230);
+    color: white;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.choice:hover {
+    cursor: pointer;
+    background-color: rgb(58, 199, 255);
+}
+
+.answer-input {
+    width: 300px;
+    border-radius: 15px;
+    font-family: sans-serif;
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+}

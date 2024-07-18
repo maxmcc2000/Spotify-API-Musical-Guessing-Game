@@ -49,6 +49,10 @@ export class ResultsComponent implements OnInit {
     }
   }
 
+  navigate(url: string) {
+    this.router.navigateByUrl(url);
+  }
+
   saveScoreToLocalStorage(name: string, score: number): void {
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard") || "{}");
 

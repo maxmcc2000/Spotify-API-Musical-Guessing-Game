@@ -30,7 +30,7 @@ export class SettingsComponent implements OnInit {
     rounds: this.rounds[1],
   };
 
-  constructor(private gameStateService: GameStateService) {}
+  constructor(private gameStateService: GameStateService, private router: Router) {}
 
   ngOnInit(): void {
     this.gameStateService.config$.subscribe((config) => {
@@ -42,5 +42,6 @@ export class SettingsComponent implements OnInit {
 
   saveSettings() {
     this.gameStateService.updateConfig(this.config);
+    this.router.navigateByUrl("game");
   }
 }

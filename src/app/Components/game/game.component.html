@@ -1,17 +1,23 @@
 <app-header></app-header>
 <div class="game-container">
   <div class="play-replay-container">
-    <img />
-    <div>Round {{ gameState.currentRound }}</div>
-    <div>
-      <p></p>
-      <button (click)="playSong()">Play</button>
+    <div class="round-text">Round {{ gameState.currentRound }}</div>
+    <img 
+        (click)="togglePlayPause()" 
+        class="play-button" 
+        [src]="getPlayPauseIcon()"
+    />
+  </div>
+    <div class="choices-container" *ngIf="numberOfOptions > 0">
+        <button *ngFor="let song of choiceOptions" (click)="checkAnswer(song)" class="choice">
+            {{ song }}
+        </button>
     </div>
-    <img />
-  </div>
-  <div class="choices-container">
-    <button *ngFor="let song of choiceOptions" (click)="checkAnswer(song)">
-      {{ song }}
-    </button>
-  </div>
+    <div *ngIf="numberOfOptions === 0" class="choices-container">
+        <input 
+            #answerInput 
+            (keydown.enter)="checkAnswer(answerInput.value); answerInput.value=''"
+            class="answer-input"
+        />
+    </div>
 </div>

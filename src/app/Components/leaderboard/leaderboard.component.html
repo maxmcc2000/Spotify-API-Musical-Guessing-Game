@@ -35,7 +35,7 @@
       *ngFor="let score of leaderboard; let i = index"
       [playerName]="score.playerName"
       [playerScore]="score.playerScore"
-      [playerRank]="score.playerRank"
+      [playerRank]="i + 1"
     ></app-result>
   </div>
 </div>
