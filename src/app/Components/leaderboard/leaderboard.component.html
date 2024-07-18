@@ -32,10 +32,10 @@
   </div>
   <div class="leaderboard-results">
     <app-result
-      *ngFor="let score of leaderboard; let i = index"
+      *ngFor="let score of leaderboard"
       [playerName]="score.playerName"
       [playerScore]="score.playerScore"
-      [playerRank]="i + 1"
+      [playerRank]="score.playerRank"
     ></app-result>
   </div>
 </div>
