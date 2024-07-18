@@ -46,6 +46,7 @@ export class GameComponent implements OnInit {
   private configSubscription: Subscription | undefined;
   private playbackState: PlaybackState | undefined;
   private audioSubscription: Subscription = new Subscription();
+  private gameOver: boolean = false;
 
   gameState: GameState = {
     currentRound: 1,
@@ -107,8 +108,8 @@ export class GameComponent implements OnInit {
     if (this.audioSubscription) {
       this.audioSubscription.unsubscribe();
     }
-    if (this) {
-      //this.pauseSong(); // Ensure audio stops when component is destroyed
+    if (!this.gameOver) {
+      this.pauseSong(); // Ensure audio stops when component is destroyed
     }
   }
 
@@ -252,6 +253,7 @@ export class GameComponent implements OnInit {
     this.gameState.currentRound += 1;
     if (this.currentRound >= this.rounds) {
       this.completeGame();
+      //this.ngOnDestroy();
       return;
     }
     this.gameService.updateGameState(this.gameState);
@@ -260,6 +262,7 @@ export class GameComponent implements OnInit {
   }
 
   completeGame() {
+    this.gameOver = true;
     this.router.navigateByUrl("results");
   }
 }
