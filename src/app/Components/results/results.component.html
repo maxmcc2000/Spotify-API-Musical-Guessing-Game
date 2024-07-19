@@ -7,7 +7,8 @@
   </div>
   <div class="submit-name-container">
     <div class="submit-label"></div>
-    <input class="name-input" #nameInput placeholder="Your Name Here..." />
+    <div *ngIf="error !== ''" class="error">{{error}}</div>
+    <input class="name-input" (click)="clearErrors()" #nameInput placeholder="Your Name Here..." />
   </div>
   <button
     class="submit-button"

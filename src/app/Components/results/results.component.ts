@@ -19,6 +19,7 @@ export class ResultsComponent implements OnInit {
   correctCount: number = 10;
   totalCount: number = 10;
   message: string = "Game Over";
+  error: string = '';
 
   difficulty: string = "";
   private configSubscription: Subscription | undefined;
@@ -53,15 +54,27 @@ export class ResultsComponent implements OnInit {
     this.router.navigateByUrl(url);
   }
 
+  clearErrors() {
+    this.error = '';
+  }
+
   saveScoreToLocalStorage(name: string, score: number): void {
-    let leaderboard = JSON.parse(localStorage.getItem("leaderboard") || "{}");
+    try {
+      if (name.length >= 3) {
+        let leaderboard = JSON.parse(localStorage.getItem("leaderboard") || "{}");
 
-    if (!leaderboard.easy) leaderboard.easy = [];
-    if (!leaderboard.normal) leaderboard.normal = [];
-    if (!leaderboard.hard) leaderboard.hard = [];
+        if (!leaderboard.easy) leaderboard.easy = [];
+        if (!leaderboard.normal) leaderboard.normal = [];
+        if (!leaderboard.hard) leaderboard.hard = [];
 
-    leaderboard[this.difficulty].push({ playerName: name, playerScore: score });
-    localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
-    this.router.navigateByUrl("");
+        leaderboard[this.difficulty].push({ playerName: name, playerScore: score });
+        localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
+        this.router.navigateByUrl("");
+      } else {
+        throw new Error('Name must be at least 3 characters long');
+      }
+    } catch (error: any) {
+      this.error = error.message;
+    }
   }
 }
