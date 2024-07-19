@@ -9,6 +9,20 @@
   animation: fade-in .6s linear;
 }
 
+.loading {
+  display: flex;
+  height: 500px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: sans-serif;
+  font-weight: 800;
+  font-size: 40px;
+  color: var(--text-color-1);
+  text-shadow: 0px 4px 4px var(--shadow-color);
+  animation: fade-in .2s linear;
+}
+
 .play-replay-container {
   display: flex;
   flex-direction: column;

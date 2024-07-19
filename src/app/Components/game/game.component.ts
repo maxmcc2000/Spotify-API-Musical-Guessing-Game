@@ -31,8 +31,8 @@ enum PlaybackState {
   Finished,
 }
 
-const clientId = "7e9cf50af43c43f2bb33a2f1eefe04f9";
-const clientSecret = "8679164a112947fcb74bc11143c47fd5";
+const clientId = "5ed7e77c36ab4ad3881c3861b63b91a9";
+const clientSecret = "a5757766312243e5b5a714ba98333fa3";
 const credentials = Buffer.from(`${clientId}:${clientSecret}`).toString(
   "base64"
 );
@@ -67,12 +67,13 @@ export class GameComponent implements OnInit {
   loading: boolean = true;
 
   gameSongs: SongInfo[] = [];
-  choiceOptions: string[] = ["choice 1", "choice 2", "choice 3", "choice 4"];
+  choiceOptions: string[] = [];
   randomChoices: string[] = [];
 
   constructor(private router: Router, private gameService: GameStateService) {}
 
   ngOnInit(): void {
+    this.loading = true;
     this.configSubscription = this.gameService.config$.subscribe(
       (config: GameConfig) => {
         this.rounds = config.rounds;
@@ -140,6 +141,7 @@ export class GameComponent implements OnInit {
     }
     this.choiceOptions.push(this.gameSongs[this.currentRound].name);
     this.shuffleChoices(this.choiceOptions);
+    this.loading = false;
   }
 
   shuffleChoices(songs: string[]) {

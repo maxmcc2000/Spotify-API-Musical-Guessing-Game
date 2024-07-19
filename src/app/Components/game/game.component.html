@@ -1,5 +1,6 @@
 <app-header></app-header>
-<div class="game-container">
+<div *ngIf="loading" class="loading">Loading...</div>
+<div *ngIf="!loading" class="game-container">
   <div class="play-replay-container">
     <div class="round-text">Round {{ gameState.currentRound }}</div>
     <img
