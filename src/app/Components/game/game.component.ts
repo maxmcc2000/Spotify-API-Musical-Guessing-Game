@@ -139,10 +139,7 @@ export class GameComponent implements OnInit {
       this.choiceOptions[i] = this.randomChoices[randomIndex];
     }
     this.choiceOptions.push(this.gameSongs[this.currentRound].name);
-
     this.shuffleChoices(this.choiceOptions);
-
-    console.log(this.choiceOptions);
   }
 
   shuffleChoices(songs: string[]) {
@@ -173,13 +170,13 @@ export class GameComponent implements OnInit {
         return song.preview_url !== null && song.explicit === false;
       });
     }
-    this.songPreviews.forEach((song) => this.randomChoices.push(song["name"]));
+    const tempPreviews = [...this.songPreviews];
     for (let i = 0; i < this.rounds; i++) {
-      let randomIndex = Math.floor(
-        Math.random() * this.songPreviews.length + 1
-      );
-      this.gameSongs[i] = this.songPreviews[randomIndex];
+      let randomIndex = Math.floor(Math.random() * tempPreviews.length);
+      this.gameSongs[i] = tempPreviews[randomIndex];
+      tempPreviews.splice(randomIndex, 1);
     }
+    tempPreviews.forEach((song) => this.randomChoices.push(song["name"]));
     this.initializeHowls();
   }
 
@@ -192,7 +189,6 @@ export class GameComponent implements OnInit {
       });
       this.howls.push(howl);
     });
-    console.log("howls initialized");
     this.populateChoices();
   }
 
@@ -203,7 +199,6 @@ export class GameComponent implements OnInit {
   playSong() {
     this.howls[this.currentRound].play();
     this.playbackState = PlaybackState.Playing;
-    console.log("should be playing");
   }
 
   pauseSong() {

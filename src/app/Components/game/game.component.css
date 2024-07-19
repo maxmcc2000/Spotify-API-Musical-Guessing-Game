@@ -6,6 +6,7 @@
   margin-top: 50px;
   gap: 50px;
   margin-bottom: 350px;
+  animation: fade-in .6s linear;
 }
 
 .play-replay-container {
@@ -36,6 +37,7 @@
 .play-button:hover {
   cursor: pointer;
   scale: 1.05;
+  animation: up-down 2s infinite;
 }
 
 .choices-container {
@@ -44,6 +46,7 @@
   padding: 10px;
   justify-content: center;
   align-items: center;
+  animation: fade-in .6s linear;
 }
 
 .choice {

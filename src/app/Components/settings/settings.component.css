@@ -8,6 +8,7 @@
   background-color: var(--button-color-2);
   margin-top: 50px;
   margin-bottom: 290px;
+  animation: fade-in .6s linear;
 }
 
 h1 {

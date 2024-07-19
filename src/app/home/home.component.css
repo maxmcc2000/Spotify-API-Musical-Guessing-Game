@@ -5,6 +5,7 @@
   align-items: center;
   font-family: sans-serif;
   margin-bottom: 200px;
+  animation: fade-in .6s linear;
 }
 
 .rules-container {
@@ -72,4 +73,5 @@
   cursor: pointer;
   background-color: var(--button-color-3);
   border-color: var(--button-color-3);
+  animation: up-down .6s infinite;
 }

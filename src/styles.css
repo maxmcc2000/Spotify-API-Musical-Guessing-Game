@@ -37,3 +37,19 @@ html body {
   /* ------- fonts ------- */
   --font-family: sans-serif;
 }
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes up-down {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(2.5px); }
+  100% { transform: translateY(0); }
+}

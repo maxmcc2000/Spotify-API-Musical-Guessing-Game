@@ -6,6 +6,7 @@
   gap: 30px;
   margin-top: 50px;
   font-family: sans-serif;
+  animation: fade-in .6s linear;
 }
 
 .results-details {
@@ -83,4 +84,5 @@
 .submit-button:hover {
   cursor: pointer;
   background-color: var(--button-color-3);
+  animation: up-down 1s infinite;
 }
